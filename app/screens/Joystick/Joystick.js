@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Text, SafeAreaView, Image, View, TouchableOpacity, StyleSheet } from 'react-native';
 import Button from '../../components/Button';
+import { SETTINGS } from '../../routes/routeNames';
 
 export default class Joystick extends Component {
   sendCode = code => () => {
@@ -25,12 +26,20 @@ export default class Joystick extends Component {
 
   start = this.sendCode(32);
 
+  openSettings = () => {
+    const { navigate } = this.props.navigation;
+    navigate(SETTINGS);
+  };
+
   render() {
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.contentWrapper}>
           <Text>status</Text>
-          <TouchableOpacity style={{ borderWidth: 1, alignItems: 'center', borderRadius: 5 }}>
+          <TouchableOpacity
+            onPress={this.openSettings}
+            style={{ borderWidth: 1, alignItems: 'center', borderRadius: 5 }}
+          >
             <Text style={{ padding: 10 }}>Настройки</Text>
           </TouchableOpacity>
         </View>
@@ -47,7 +56,7 @@ export default class Joystick extends Component {
             <Button onPress={this.buttonCenterBottom} style={styles.buttonCenterBottom} />
             <Button onPress={this.buttonRightBottom} style={styles.buttonRightBottom} />
           </View>
-          <TouchableOpacity style={{ borderWidth: 1, alignItems: 'center', borderRadius: 5 }}>
+          <TouchableOpacity onPress={this.start} style={{ borderWidth: 1, alignItems: 'center', borderRadius: 5 }}>
             <Text style={{ padding: 10 }}>Запуск</Text>
           </TouchableOpacity>
         </View>

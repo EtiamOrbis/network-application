@@ -17,8 +17,7 @@ const AppNavigator = createStackNavigator(
       navigationOptions: nullHeaderNavigationOptions
     },
     [routeNames.SETTINGS]: {
-      screen: Settings,
-      navigationOptions: nullHeaderNavigationOptions
+      screen: Settings
     }
   },
   {
