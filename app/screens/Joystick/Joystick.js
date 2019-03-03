@@ -10,7 +10,6 @@ export default class Joystick extends Component {
     status: ''
   };
   sendCode = code => async () => {
-    console.log(code + 128);
     const status = await getData(code + 128);
     this.setState({
       status
