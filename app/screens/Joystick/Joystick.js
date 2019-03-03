@@ -36,11 +36,8 @@ export default class Joystick extends Component {
       <SafeAreaView style={styles.container}>
         <View style={styles.contentWrapper}>
           <Text>status</Text>
-          <TouchableOpacity
-            onPress={this.openSettings}
-            style={{ borderWidth: 1, alignItems: 'center', borderRadius: 5 }}
-          >
-            <Text style={{ padding: 10 }}>Настройки</Text>
+          <TouchableOpacity onPress={this.openSettings}>
+            <Image source={{ uri: 'settings' }} style={styles.settingsButton} />
           </TouchableOpacity>
         </View>
         <View style={styles.contentWrapper}>
@@ -48,7 +45,7 @@ export default class Joystick extends Component {
             <Button onPress={this.buttonLeftTop} style={styles.buttonLeftTop} />
             <Button onPress={this.buttonConterTop} />
             <Button onPress={this.buttonRightTop} style={styles.buttonRightTop} />
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: 150 }}>
+            <View style={styles.middleButtonsWrapper}>
               <Button onPress={this.buttonLeftMiddle} style={styles.buttonLeftMiddle} />
               <Button onPress={this.buttonRightMiddle} style={styles.buttonRightMiddle} />
             </View>
@@ -56,8 +53,8 @@ export default class Joystick extends Component {
             <Button onPress={this.buttonCenterBottom} style={styles.buttonCenterBottom} />
             <Button onPress={this.buttonRightBottom} style={styles.buttonRightBottom} />
           </View>
-          <TouchableOpacity onPress={this.start} style={{ borderWidth: 1, alignItems: 'center', borderRadius: 5 }}>
-            <Text style={{ padding: 10 }}>Запуск</Text>
+          <TouchableOpacity onPress={this.start} style={styles.startButton}>
+            <Text style={styles.startButtonText}>Запуск</Text>
           </TouchableOpacity>
         </View>
       </SafeAreaView>
@@ -75,6 +72,13 @@ const styles = StyleSheet.create({
   },
   contentWrapper: { justifyContent: 'space-between', flexDirection: 'row', padding: 20, alignItems: 'center' },
   buttonsWrapper: { width: 150, height: 150, flexWrap: 'wrap', flexDirection: 'row' },
+  startButton: { borderWidth: 1, alignItems: 'center', borderRadius: 5 },
+  startButtonText: { padding: 10 },
+  settingsButton: {
+    width: 30,
+    height: 30
+  },
+  middleButtonsWrapper: { flexDirection: 'row', justifyContent: 'space-between', width: 150 },
   buttonLeftTop: {
     transform: [
       {
