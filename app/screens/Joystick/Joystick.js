@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, SafeAreaView, Image, View, TouchableOpacity, StyleSheet } from 'react-native';
 import Button from '../../components/Button';
 import { SETTINGS } from '../../routes/routeNames';
+import * as strings from '../../constants/strings';
 
 export default class Joystick extends Component {
   sendCode = code => () => {
@@ -37,7 +38,7 @@ export default class Joystick extends Component {
         <View style={styles.contentWrapper}>
           <Text>status</Text>
           <TouchableOpacity onPress={this.openSettings}>
-            <Image source={{ uri: 'settings' }} style={styles.settingsButton} />
+            <Image source={{ uri: strings.SETTINGS }} style={styles.settingsButton} />
           </TouchableOpacity>
         </View>
         <View style={styles.contentWrapper}>
@@ -54,7 +55,7 @@ export default class Joystick extends Component {
             <Button onPress={this.buttonRightBottom} style={styles.buttonRightBottom} />
           </View>
           <TouchableOpacity onPress={this.start} style={styles.startButton}>
-            <Text style={styles.startButtonText}>Запуск</Text>
+            <Text style={styles.startButtonText}>{strings.START}</Text>
           </TouchableOpacity>
         </View>
       </SafeAreaView>
