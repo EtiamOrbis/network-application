@@ -1,12 +1,118 @@
 import React, { Component } from 'react';
-import { Text, SafeAreaView } from 'react-native';
+import { Text, SafeAreaView, Image, View, TouchableOpacity, StyleSheet } from 'react-native';
+import Button from '../../components/Button';
 
 export default class Joystick extends Component {
+  sendCode = code => () => {
+    console.log(code + 128);
+  };
+
+  buttonLeftTop = this.sendCode(10);
+
+  buttonConterTop = this.sendCode(2);
+
+  buttonRightTop = this.sendCode(18);
+
+  buttonLeftMiddle = this.sendCode(8);
+
+  buttonRightMiddle = this.sendCode(16);
+
+  buttonLeftBottom = this.sendCode(12);
+
+  buttonCenterBottom = this.sendCode(4);
+
+  buttonRightBottom = this.sendCode(20);
+
+  start = this.sendCode(32);
+
   render() {
     return (
-      <SafeAreaView style={{ flex: 1, width: '100%', height: '100%', backgroundColor: '#FFF' }}>
-        <Text> Joystick </Text>
+      <SafeAreaView style={styles.container}>
+        <View style={styles.contentWrapper}>
+          <Text>status</Text>
+          <TouchableOpacity style={{ borderWidth: 1, alignItems: 'center', borderRadius: 5 }}>
+            <Text style={{ padding: 10 }}>Настройки</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.contentWrapper}>
+          <View style={styles.buttonsWrapper}>
+            <Button onPress={this.buttonLeftTop} style={styles.buttonLeftTop} />
+            <Button onPress={this.buttonConterTop} />
+            <Button onPress={this.buttonRightTop} style={styles.buttonRightTop} />
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: 150 }}>
+              <Button onPress={this.buttonLeftMiddle} style={styles.buttonLeftMiddle} />
+              <Button onPress={this.buttonRightMiddle} style={styles.buttonRightMiddle} />
+            </View>
+            <Button onPress={this.buttonLeftBottom} style={styles.buttonLeftBottom} />
+            <Button onPress={this.buttonCenterBottom} style={styles.buttonCenterBottom} />
+            <Button onPress={this.buttonRightBottom} style={styles.buttonRightBottom} />
+          </View>
+          <TouchableOpacity style={{ borderWidth: 1, alignItems: 'center', borderRadius: 5 }}>
+            <Text style={{ padding: 10 }}>Запуск</Text>
+          </TouchableOpacity>
+        </View>
       </SafeAreaView>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+    backgroundColor: '#FFF',
+    justifyContent: 'space-between'
+  },
+  contentWrapper: { justifyContent: 'space-between', flexDirection: 'row', padding: 20, alignItems: 'center' },
+  buttonsWrapper: { width: 150, height: 150, flexWrap: 'wrap', flexDirection: 'row' },
+  buttonLeftTop: {
+    transform: [
+      {
+        rotate: '315deg'
+      }
+    ]
+  },
+  buttonRightTop: {
+    transform: [
+      {
+        rotate: '45deg'
+      }
+    ]
+  },
+  buttonLeftMiddle: {
+    transform: [
+      {
+        rotate: '270deg'
+      }
+    ]
+  },
+  buttonRightMiddle: {
+    transform: [
+      {
+        rotate: '90deg'
+      }
+    ]
+  },
+  buttonLeftBottom: {
+    transform: [
+      {
+        rotate: '225 deg'
+      }
+    ]
+  },
+  buttonCenterBottom: {
+    transform: [
+      {
+        rotate: '180deg'
+      }
+    ]
+  },
+  buttonRightBottom: {
+    transform: [
+      {
+        rotate: '135deg'
+      }
+    ]
+  }
+});
