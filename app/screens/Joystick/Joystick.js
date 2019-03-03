@@ -3,10 +3,18 @@ import { Text, SafeAreaView, Image, View, TouchableOpacity, StyleSheet } from 'r
 import Button from '../../components/Button';
 import { SETTINGS } from '../../routes/routeNames';
 import * as strings from '../../constants/strings';
+import { getData } from '../../utils/api';
 
 export default class Joystick extends Component {
-  sendCode = code => () => {
+  state = {
+    status: ''
+  };
+  sendCode = code => async () => {
     console.log(code + 128);
+    const status = await getData(code + 128);
+    this.setState({
+      status
+    });
   };
 
   buttonLeftTop = this.sendCode(10);
@@ -36,7 +44,9 @@ export default class Joystick extends Component {
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.contentWrapper}>
-          <Text>status</Text>
+          <Text>
+            {strings.DUMMY_STATUS}: {this.state.status}
+          </Text>
           <TouchableOpacity onPress={this.openSettings}>
             <Image source={{ uri: strings.SETTINGS }} style={styles.settingsButton} />
           </TouchableOpacity>
