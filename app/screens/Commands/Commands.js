@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, SafeAreaView, StyleSheet, View, TouchableOpacity } from 'react-native';
+import { Text, SafeAreaView, StyleSheet, View, TouchableOpacity, ScrollView } from 'react-native';
 import Status from '../../components/Status';
 import { getData } from '../../utils/api';
 import * as strings from '../../constants/strings';
@@ -32,19 +32,21 @@ export default class Commands extends Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        <Status navigation={this.props.navigation} status={this.state.status} />
-        <View style={styles.contentWrapper}>
-          <View style={styles.buttonsWrapper}>
-            <TextButton onPress={this.forward} text={strings.FORWARD} />
-            <TextButton onPress={this.allForward} text={strings.ALL_FORWARD} />
-            <TextButton onPress={this.backward} text={strings.BACKWARD} />
-            <TextButton onPress={this.allBackward} text={strings.ALL_BACKWARD} />
+        <ScrollView contentContainerStyle={styles.contentContainer}>
+          <Status navigation={this.props.navigation} status={this.state.status} />
+          <View style={styles.contentWrapper}>
+            <View style={styles.buttonsWrapper}>
+              <TextButton onPress={this.forward} text={strings.FORWARD} />
+              <TextButton onPress={this.allForward} text={strings.ALL_FORWARD} />
+              <TextButton onPress={this.backward} text={strings.BACKWARD} />
+              <TextButton onPress={this.allBackward} text={strings.ALL_BACKWARD} />
+            </View>
+            <View>
+              <TextButton onPress={this.start} text={strings.STOP} />
+              <TextButton onPress={this.start} text={strings.START} />
+            </View>
           </View>
-          <View>
-            <TextButton onPress={this.start} text={strings.STOP} />
-            <TextButton onPress={this.start} text={strings.START} />
-          </View>
-        </View>
+        </ScrollView>
       </SafeAreaView>
     );
   }
@@ -55,9 +57,9 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
     height: '100%',
-    backgroundColor: '#FFF',
-    justifyContent: 'space-between'
+    backgroundColor: '#FFF'
   },
+  contentContainer: { justifyContent: 'space-between', flexGrow: 1 },
   contentWrapper: { justifyContent: 'space-between', flexDirection: 'row', padding: 20, alignItems: 'center' },
   startButton: { borderWidth: 1, alignItems: 'center', borderRadius: 5, marginTop: 10 },
   startButtonText: { padding: 10 }

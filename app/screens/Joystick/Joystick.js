@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { SafeAreaView, View, StyleSheet } from 'react-native';
+import { SafeAreaView, View, StyleSheet, ScrollView } from 'react-native';
 import Button from '../../components/Button';
 import * as strings from '../../constants/strings';
 import { getData } from '../../utils/api';
@@ -39,22 +39,24 @@ export default class Joystick extends Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        <Status navigation={this.props.navigation} status={this.state.status} />
-        <View style={styles.contentWrapper}>
-          <View style={styles.buttonsWrapper}>
-            <Button onPress={this.buttonLeftTop} style={styles.buttonLeftTop} />
-            <Button onPress={this.buttonConterTop} />
-            <Button onPress={this.buttonRightTop} style={styles.buttonRightTop} />
-            <View style={styles.middleButtonsWrapper}>
-              <Button onPress={this.buttonLeftMiddle} style={styles.buttonLeftMiddle} />
-              <Button onPress={this.buttonRightMiddle} style={styles.buttonRightMiddle} />
+        <ScrollView contentContainerStyle={styles.contentContainer}>
+          <Status navigation={this.props.navigation} status={this.state.status} />
+          <View style={styles.contentWrapper}>
+            <View style={styles.buttonsWrapper}>
+              <Button onPress={this.buttonLeftTop} style={styles.buttonLeftTop} />
+              <Button onPress={this.buttonConterTop} />
+              <Button onPress={this.buttonRightTop} style={styles.buttonRightTop} />
+              <View style={styles.middleButtonsWrapper}>
+                <Button onPress={this.buttonLeftMiddle} style={styles.buttonLeftMiddle} />
+                <Button onPress={this.buttonRightMiddle} style={styles.buttonRightMiddle} />
+              </View>
+              <Button onPress={this.buttonLeftBottom} style={styles.buttonLeftBottom} />
+              <Button onPress={this.buttonCenterBottom} style={styles.buttonCenterBottom} />
+              <Button onPress={this.buttonRightBottom} style={styles.buttonRightBottom} />
             </View>
-            <Button onPress={this.buttonLeftBottom} style={styles.buttonLeftBottom} />
-            <Button onPress={this.buttonCenterBottom} style={styles.buttonCenterBottom} />
-            <Button onPress={this.buttonRightBottom} style={styles.buttonRightBottom} />
+            <TextButton onPress={this.start} text={strings.START} />
           </View>
-          <TextButton onPress={this.start} text={strings.START} />
-        </View>
+        </ScrollView>
       </SafeAreaView>
     );
   }
@@ -65,9 +67,9 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
     height: '100%',
-    backgroundColor: '#FFF',
-    justifyContent: 'space-between'
+    backgroundColor: '#FFF'
   },
+  contentContainer: { justifyContent: 'space-between', flexGrow: 1 },
   contentWrapper: { justifyContent: 'space-between', flexDirection: 'row', padding: 20, alignItems: 'center' },
   buttonsWrapper: { width: 150, height: 150, flexWrap: 'wrap', flexDirection: 'row' },
   startButton: { borderWidth: 1, alignItems: 'center', borderRadius: 5 },
