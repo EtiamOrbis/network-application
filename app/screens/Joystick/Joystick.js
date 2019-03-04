@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import { Text, SafeAreaView, Image, View, TouchableOpacity, StyleSheet } from 'react-native';
+import { Text, SafeAreaView, View, TouchableOpacity, StyleSheet } from 'react-native';
 import Button from '../../components/Button';
-import { COMMANDS } from '../../routes/routeNames';
 import * as strings from '../../constants/strings';
 import { getData } from '../../utils/api';
+import Status from '../../components/Status';
+import { TextButton } from '../../components/TextButton';
 
 export default class Joystick extends Component {
   state = {
     status: ''
   };
+
   sendCode = code => async () => {
     const status = await getData(code + 128);
     this.setState({
@@ -34,24 +36,10 @@ export default class Joystick extends Component {
 
   start = this.sendCode(32);
 
-  openSecondScreen = () => {
-    const { navigate } = this.props.navigation;
-    navigate(COMMANDS);
-  };
-
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        <View style={{ flexDirection: 'column', marginLeft: 20 }}>
-          <View style={{ height: 50, justifyContent: 'center' }}>
-            <Text>
-              {strings.DUMMY_STATUS}: {this.state.status}
-            </Text>
-          </View>
-          <TouchableOpacity onPress={this.openSecondScreen} style={[styles.startButton, { width: 80 }]}>
-            <Text style={styles.startButtonText}>2 экран</Text>
-          </TouchableOpacity>
-        </View>
+        <Status navigation={this.props.navigation} status={this.state.status} />
         <View style={styles.contentWrapper}>
           <View style={styles.buttonsWrapper}>
             <Button onPress={this.buttonLeftTop} style={styles.buttonLeftTop} />
@@ -65,9 +53,7 @@ export default class Joystick extends Component {
             <Button onPress={this.buttonCenterBottom} style={styles.buttonCenterBottom} />
             <Button onPress={this.buttonRightBottom} style={styles.buttonRightBottom} />
           </View>
-          <TouchableOpacity onPress={this.start} style={styles.startButton}>
-            <Text style={styles.startButtonText}>{strings.START}</Text>
-          </TouchableOpacity>
+          <TextButton onPress={this.start} text={strings.START} />
         </View>
       </SafeAreaView>
     );
