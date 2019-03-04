@@ -3,7 +3,7 @@ import { ERROR } from '../constants/strings';
 
 export const getData = async code => {
   const url = await AsyncStorage.getItem('@url:key');
-  let status = '';
+  let parsedResponse = {};
   if (url) {
     try {
       let method = {
@@ -15,9 +15,8 @@ export const getData = async code => {
         }
       };
       const response = await fetch(url, method);
-      status = response.status;
+      parsedResponse = await response.json();
     } catch (error) {
-      status = error.message;
       Alert.alert(
         ERROR,
         error.message,
@@ -31,5 +30,5 @@ export const getData = async code => {
       );
     }
   }
-  return status;
+  return parsedResponse;
 };

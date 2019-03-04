@@ -8,14 +8,22 @@ import { TextButton } from '../../components/TextButton';
 
 export default class Joystick extends Component {
   state = {
+    x: '',
+    y: '',
+    z: '',
     status: ''
   };
 
   sendCode = code => async () => {
-    const status = await getData(code + 128);
-    this.setState({
-      status
-    });
+    const response = await getData(code + 128);
+    if (response.x && response.y && response.z && response.status) {
+      this.setState({
+        x: response.x,
+        y: response.y,
+        z: response.z,
+        status: response.status
+      });
+    }
   };
 
   buttonLeftTop = this.sendCode(10);

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, SafeAreaView, StyleSheet, View, TouchableOpacity, ScrollView } from 'react-native';
+import { SafeAreaView, StyleSheet, View, ScrollView } from 'react-native';
 import Status from '../../components/Status';
 import { getData } from '../../utils/api';
 import * as strings from '../../constants/strings';
@@ -7,14 +7,22 @@ import { TextButton } from '../../components/TextButton';
 
 export default class Commands extends Component {
   state = {
+    x: '',
+    y: '',
+    z: '',
     status: ''
   };
 
   sendCode = code => async () => {
-    const status = await getData(code + 128);
-    this.setState({
-      status
-    });
+    const response = await getData(code + 128);
+    if (response.x && response.y && response.z && response.status) {
+      this.setState({
+        x: response.x,
+        y: response.y,
+        z: response.z,
+        status: response.status
+      });
+    }
   };
 
   forward = this.sendCode(10);
