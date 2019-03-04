@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, SafeAreaView, Image, View, TouchableOpacity, StyleSheet } from 'react-native';
 import Button from '../../components/Button';
-import { SETTINGS } from '../../routes/routeNames';
+import { COMMANDS } from '../../routes/routeNames';
 import * as strings from '../../constants/strings';
 import { getData } from '../../utils/api';
 
@@ -34,20 +34,22 @@ export default class Joystick extends Component {
 
   start = this.sendCode(32);
 
-  openSettings = () => {
+  openSecondScreen = () => {
     const { navigate } = this.props.navigation;
-    navigate(SETTINGS);
+    navigate(COMMANDS);
   };
 
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        <View style={styles.contentWrapper}>
-          <Text>
-            {strings.DUMMY_STATUS}: {this.state.status}
-          </Text>
-          <TouchableOpacity onPress={this.openSettings}>
-            <Image source={{ uri: strings.SETTINGS }} style={styles.settingsButton} />
+        <View style={{ flexDirection: 'column', marginLeft: 20 }}>
+          <View style={{ height: 50, justifyContent: 'center' }}>
+            <Text>
+              {strings.DUMMY_STATUS}: {this.state.status}
+            </Text>
+          </View>
+          <TouchableOpacity onPress={this.openSecondScreen} style={[styles.startButton, { width: 80 }]}>
+            <Text style={styles.startButtonText}>2 экран</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.contentWrapper}>
@@ -84,10 +86,6 @@ const styles = StyleSheet.create({
   buttonsWrapper: { width: 150, height: 150, flexWrap: 'wrap', flexDirection: 'row' },
   startButton: { borderWidth: 1, alignItems: 'center', borderRadius: 5 },
   startButtonText: { padding: 10 },
-  settingsButton: {
-    width: 30,
-    height: 30
-  },
   middleButtonsWrapper: { flexDirection: 'row', justifyContent: 'space-between', width: 150 },
   buttonLeftTop: {
     transform: [

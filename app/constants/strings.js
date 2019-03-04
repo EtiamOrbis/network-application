@@ -1,6 +1,9 @@
 export const START = 'Запуск';
-export const SETTINGS = 'settings';
-export const ARROW = 'arrow';
+export const SETTINGS_ICON = 'settings';
+export const ARROW_ICON = 'arrow';
 export const ENTER_URL = 'Введите URL';
 export const ERROR = 'Ошибка';
 export const DUMMY_STATUS = 'Status';
+export const JOYSTICK = 'Джойстик';
+export const COMMANDS = 'Команды';
+export const SETTINGS = 'Настройки';

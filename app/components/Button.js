@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { TouchableOpacity, Image, StyleSheet } from 'react-native';
-import { ARROW } from '../constants/strings';
+import { ARROW_ICON } from '../constants/strings';
 
 export default class Button extends Component {
   render() {
     return (
-      <TouchableOpacity {...this.props} style={styles.button}>
+      <TouchableOpacity onPressIn={this.props.onPress} onPressOut={this.props.onPress} style={styles.button}>
         <Image
-          source={{ uri: ARROW }}
+          source={{ uri: ARROW_ICON }}
           style={[
             {
               width: 20,
