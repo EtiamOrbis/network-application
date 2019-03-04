@@ -48,7 +48,7 @@ export default class Joystick extends Component {
     return (
       <SafeAreaView style={styles.container}>
         <ScrollView contentContainerStyle={styles.contentContainer}>
-          <Status navigation={this.props.navigation} status={this.state.status} />
+          <Status navigation={this.props.navigation} status={this.state} />
           <View style={styles.contentWrapper}>
             <View style={styles.buttonsWrapper}>
               <Button onPress={this.buttonLeftTop} style={styles.buttonLeftTop} />

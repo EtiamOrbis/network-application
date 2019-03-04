@@ -41,7 +41,7 @@ export default class Commands extends Component {
     return (
       <SafeAreaView style={styles.container}>
         <ScrollView contentContainerStyle={styles.contentContainer}>
-          <Status navigation={this.props.navigation} status={this.state.status} />
+          <Status navigation={this.props.navigation} status={this.state} />
           <View style={styles.contentWrapper}>
             <View style={styles.buttonsWrapper}>
               <TextButton onPress={this.forward} text={strings.FORWARD} />
