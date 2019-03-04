@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, SafeAreaView, View, TouchableOpacity, StyleSheet } from 'react-native';
+import { SafeAreaView, View, StyleSheet } from 'react-native';
 import Button from '../../components/Button';
 import * as strings from '../../constants/strings';
 import { getData } from '../../utils/api';
