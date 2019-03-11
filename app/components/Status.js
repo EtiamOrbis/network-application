@@ -15,16 +15,7 @@ export default class Status extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.paramsText}>
-          {strings.X}: {this.props.status.x}
-        </Text>
-        <Text style={styles.paramsText}>
-          {strings.Y}: {this.props.status.y}
-        </Text>
-        <Text style={styles.paramsText}>
-          {strings.Z}: {this.props.status.z}
-        </Text>
-        <Text style={styles.paramsText}>
-          {strings.STATUS}: {this.props.status.status}
+          {strings.STATUS}: {this.props.status}
         </Text>
         <TextButton
           style={styles.startButton}

@@ -8,20 +8,14 @@ import { TextButton } from '../../components/TextButton';
 
 export default class Joystick extends Component {
   state = {
-    x: '',
-    y: '',
-    z: '',
     status: ''
   };
 
   sendCode = code => async () => {
     const response = await getData(code + 128);
-    if (response.x && response.y && response.z && response.status) {
+    if (response) {
       this.setState({
-        x: response.x,
-        y: response.y,
-        z: response.z,
-        status: response.status
+        status: response
       });
     }
   };
@@ -48,7 +42,7 @@ export default class Joystick extends Component {
     return (
       <SafeAreaView style={styles.container}>
         <ScrollView contentContainerStyle={styles.contentContainer}>
-          <Status navigation={this.props.navigation} status={this.state} />
+          <Status navigation={this.props.navigation} status={this.state.status} />
           <View style={styles.contentWrapper}>
             <View style={styles.buttonsWrapper}>
               <Button onPress={this.buttonLeftTop} style={styles.buttonLeftTop} />
