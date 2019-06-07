@@ -11,11 +11,13 @@ export default class Status extends Component {
   };
 
   render() {
-    const { routeName } = this.props.navigation.state;
+    const { status, navigation } = this.props;
+    const { routeName } = navigation.state;
+
     return (
       <View style={styles.container}>
         <Text style={styles.paramsText}>
-          {strings.STATUS}: {this.props.status}
+          {strings.STATUS}: {typeof status === 'string' ? status : ''}
         </Text>
         <TextButton
           style={styles.startButton}
