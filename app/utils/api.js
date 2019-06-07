@@ -15,7 +15,7 @@ export const getData = async code => {
         }
       };
       const response = await fetch(url, method);
-      parsedResponse = await response.json();
+      parsedResponse = await response.text();
     } catch (error) {
       Alert.alert(
         ERROR,

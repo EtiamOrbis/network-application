@@ -12,6 +12,7 @@ export default class Commands extends Component {
 
   sendCode = code => async () => {
     const response = await getData(code + 128);
+
     if (response) {
       this.setState({
         status: response
